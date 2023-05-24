@@ -89,17 +89,19 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                         children: <TextSpan>[
                           TextSpan(
-                              text: 'Não tem uma conta? ',
-                              style: Theme.of(context).textTheme.bodyLarge),
+                            text: 'Não tem uma conta? ',
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
                           TextSpan(
                             text: 'Cadastre-se',
                             style: TextStyle(
-                                fontSize: 16,
-                                textBaseline: TextBaseline.alphabetic,
-                                fontWeight: FontWeight.w500,
-                                letterSpacing: 0.5,
-                                color: Theme.of(context).colorScheme.primary,
-                                decoration: TextDecoration.underline),
+                              fontSize: 16,
+                              textBaseline: TextBaseline.alphabetic,
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: 0.5,
+                              color: Theme.of(context).colorScheme.primary,
+                              decoration: TextDecoration.underline,
+                            ),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 Navigator.pushNamed(

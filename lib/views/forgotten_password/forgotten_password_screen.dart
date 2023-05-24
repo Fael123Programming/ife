@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:ife/widgets/header_title.dart';
-import 'package:ife/views/forgot_password/form/forget_password_form.dart';
+import 'package:ife/views/forgotten_password/form/forgotten_password_form.dart';
 import 'package:ife/widgets/custom_app_bar.dart';
 
-class ForgotPasswordScreen extends StatefulWidget {
-  const ForgotPasswordScreen({Key? key}) : super(key: key);
+class ForgottenPasswordScreen extends StatefulWidget {
+  const ForgottenPasswordScreen({Key? key}) : super(key: key);
 
   @override
-  _ForgotPasswordScreenState createState() => _ForgotPasswordScreenState();
+  State<ForgottenPasswordScreen> createState() => _ForgottenPasswordScreenState();
 }
 
-class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
+class _ForgottenPasswordScreenState extends State<ForgottenPasswordScreen> {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
 
@@ -28,9 +28,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               HeaderTitle(
                 title: 'Esqueceu a senha',
                 subtitle:
-                    'Digite o seu e-mail para receber o código de validação.',
+                    'Digite o seu e-mail para receber o código de validação',
               ),
-              ForgetPasswordForm(),
+              ForgottenPasswordForm(),
             ],
           ),
         ),

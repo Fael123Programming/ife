@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ife/widgets/custom_code_input/custom_code_input.dart';
-import 'package:ifeirinha/widgets/button/button.dart';
+import 'package:ife/widgets/button.dart';
 
 class ValidationCodeForm extends StatefulWidget {
   const ValidationCodeForm({Key? key}) : super(key: key);
 
   @override
-  _ValidationCodeFormState createState() => _ValidationCodeFormState();
+  State<ValidationCodeForm> createState() => _ValidationCodeFormState();
 }
 
 class _ValidationCodeFormState extends State<ValidationCodeForm> {
@@ -18,15 +18,47 @@ class _ValidationCodeFormState extends State<ValidationCodeForm> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Column(
         children: [
-          CustomCodeInput(key: customCodeInputKey),
+          CustomCodeInput(
+            key: customCodeInputKey,
+          ),
           Button(
             text: 'Continuar',
             onPressed: () async {
               FocusManager.instance.primaryFocus?.unfocus();
-              String code = getCode();
-              cleanForm();
-              Navigator.pushNamed(context, '/forgotpassword/redefinepassword');
-              await Future.delayed(const Duration(seconds: 1));
+              // Check whether the code matches the one on the API.
+              if (getCode() == '1234') {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Código verificado com sucesso!'),
+                    duration: Duration(seconds: 1),
+                  ),
+                );
+                await Future.delayed(
+                  const Duration(
+                    seconds: 1,
+                  ),
+                );
+                cleanForm();
+                Navigator.pop(context);
+                Navigator.pop(context);
+                Navigator.pushNamed(
+                    context, '/forgottenpassword/redefinepassword');
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Não conseguimos validar seu código!'),
+                    duration: Duration(seconds: 1),
+                  ),
+                );
+                await Future.delayed(
+                  const Duration(
+                    seconds: 1,
+                  ),
+                );
+                cleanForm();
+                customCodeInputKey.currentState!.textFormField1FocusNode
+                    .requestFocus();
+              }
             },
           ),
           const SizedBox(
@@ -38,6 +70,7 @@ class _ValidationCodeFormState extends State<ValidationCodeForm> {
             onPressed: () async {
               cleanForm();
               FocusManager.instance.primaryFocus?.unfocus();
+              // Resend code.
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                   content: Text('Código reenviado com sucesso'),

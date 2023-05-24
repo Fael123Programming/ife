@@ -15,9 +15,13 @@ class Input extends StatefulWidget {
 class _InputState extends State<Input> {
   final controller = TextEditingController();
   bool visibility = false;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+        keyboardType: widget.type == 'Email'
+            ? TextInputType.emailAddress
+            : TextInputType.text,
         controller: controller,
         obscureText: widget.type == 'Senha' ? !visibility : visibility,
         autofocus: widget.focus,

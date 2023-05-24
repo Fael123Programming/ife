@@ -87,7 +87,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                   ),
-                  SignUpForm(key: signUpFormKey)
+                  SignUpForm(
+                    key: signUpFormKey,
+                  )
                 ],
               ),
             ),

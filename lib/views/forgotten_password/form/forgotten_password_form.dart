@@ -5,14 +5,14 @@ import 'package:ife/widgets/button.dart';
 import 'package:ife/widgets/input.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
-class ForgetPasswordForm extends StatefulWidget {
-  const ForgetPasswordForm({Key? key}) : super(key: key);
+class ForgottenPasswordForm extends StatefulWidget {
+  const ForgottenPasswordForm({Key? key}) : super(key: key);
 
   @override
-  _ForgetPasswordFormState createState() => _ForgetPasswordFormState();
+  State<ForgottenPasswordForm> createState() => _ForgottenPasswordFormState();
 }
 
-class _ForgetPasswordFormState extends State<ForgetPasswordForm> {
+class _ForgottenPasswordFormState extends State<ForgottenPasswordForm> {
   final emailController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
@@ -45,7 +45,7 @@ class _ForgetPasswordFormState extends State<ForgetPasswordForm> {
           text: 'CONTINUAR',
           onPressed: () async {
             if (formKey.currentState!.validate()) {
-              Navigator.pushNamed(context, '/forgotpassword/validationcode');
+              Navigator.pushNamed(context, '/forgottenpassword/validationcode');
             }
           },
         ),

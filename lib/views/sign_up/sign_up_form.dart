@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:ife/utils/screen_percentage.dart';
 import 'package:ife/utils/screen_sizer.dart';
-import 'package:ife/views/forgot_password//password_confirm.dart';
+import 'package:ife/views/forgotten_password/password_confirm.dart';
 import 'package:ife/widgets/image_input.dart';
 import 'package:ife/widgets/phone_number_input/phone_number_input.dart';
 import 'package:ife/widgets/user_terms_conditions.dart';
@@ -55,7 +55,7 @@ class SignUpFormState extends State<SignUpForm> {
                           ScreenPercentage.marginInbetweenTextFormFields,
                     ),
                   ),
-                  child: const Input(type: 'Email institucional'),
+                  child: const Input(type: 'Email'),
                 ),
                 PhoneNumberInput(key: phoneNumberInputController),
                 PasswordConfirm(
@@ -135,7 +135,10 @@ class SignUpFormState extends State<SignUpForm> {
               if (formKey.currentState!.validate()) {
                 String msg = 'Cadastrado!';
                 if (listTileIconChecked) {
+                  // Log user in.
                   Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/home');
                 } else {
                   msg =
                       'É necessário que concorde com nossos termos e condições de uso';

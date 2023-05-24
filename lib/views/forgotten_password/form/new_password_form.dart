@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ife/utils/screen_percentage.dart';
 import 'package:ife/utils/screen_sizer.dart';
-import 'package:ife/views/forgot_password/password_confirm.dart';
+import 'package:ife/views/forgotten_password/password_confirm.dart';
 import 'package:ife/widgets/button.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -64,7 +64,10 @@ class _NewPasswordFormState extends State<NewPasswordForm> {
                       ),
                       actions: [
                         TextButton(
-                          child: Text('Sim', style: GoogleFonts.roboto()),
+                          child: Text(
+                            'Sim',
+                            style: GoogleFonts.roboto(),
+                          ),
                           onPressed: () {
                             Navigator.pop(context);
                             Navigator.pop(context);

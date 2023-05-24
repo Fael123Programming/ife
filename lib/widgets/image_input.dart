@@ -67,7 +67,7 @@ class _ImageInputState extends State<ImageInput> {
                       Material(
                         child: ListTile(
                           title: Text(
-                            'Camera',
+                            'Câmera',
                             style: GoogleFonts.roboto(),
                           ),
                           trailing: const Icon(Icons.camera_alt),
