@@ -38,14 +38,14 @@ class _SignInFormState extends State<SignInForm> {
             key: formKey,
             child: Column(
               children: [
-                Input(type: 'Email'),
+                const Input(type: 'Email'),
                 SizedBox(
                   height: screenSizer.convertToDeviceScreenHeight(
                     screenPercentage:
                         ScreenPercentage.marginInbetweenTextFormFields,
                   ),
                 ),
-                Input(type: 'Senha'),
+                const Input(type: 'Senha'),
               ],
             ),
           ),
