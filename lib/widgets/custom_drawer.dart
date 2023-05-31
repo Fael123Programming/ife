@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ife/views/favorites/my_favorites_screen.dart';
 import 'package:ife/views/home/home_screen.dart';
+import 'package:ife/views/profile/profile_screen.dart';
+import 'package:ife/views/announcements/my_announcements.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -37,9 +39,17 @@ class _CustomDrawerState extends State<CustomDrawer> {
               );
             },
           ),
-          const ListTile(
-            title: Text('Meu Perfil'),
-            leading: Icon(Icons.person),
+          ListTile(
+            title: const Text('Meu Perfil'),
+            leading: const Icon(Icons.person),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProfileScreen(),
+                ),
+              );
+            },
           ),
           ListTile(
             title: const Text('Favoritos'),
@@ -55,9 +65,17 @@ class _CustomDrawerState extends State<CustomDrawer> {
               );
             },
           ),
-          const ListTile(
-            title: Text('Meus Anúncios'),
-            leading: Icon(Icons.assignment_returned),
+          ListTile(
+            title: const Text('Meus Anúncios'),
+            leading: const Icon(Icons.assignment_returned),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const MyAnnouncements(),
+                ),
+              );
+            },
           ),
           const ListTile(
             title: Text('Cadastrar Anúncio'),
