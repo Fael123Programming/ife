@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ife/views/favorites/my_favorites_screen.dart';
-import 'package:ife/views/home/home_screen.dart';
-import 'package:ife/views/profile/profile_screen.dart';
-import 'package:ife/views/announcements/my_announcements.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -24,82 +20,60 @@ class _CustomDrawerState extends State<CustomDrawer> {
             accountName: Text('Mark Johson'),
             accountEmail: Text('mark.johson@marketing.io'),
             currentAccountPicture: CircleAvatar(
-              backgroundImage: AssetImage(''),
+              // backgroundImage: AssetImage(''),
             ),
           ),
           ListTile(
             title: const Text('Home'),
             leading: const Icon(Icons.home),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const HomeScreen(),
-                ),
-              );
-            },
+            onTap: () => Navigator.pushReplacementNamed(context, '/home'),
           ),
           ListTile(
             title: const Text('Meu Perfil'),
             leading: const Icon(Icons.person),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ProfileScreen(),
-                ),
-              );
-            },
+            onTap: () => Navigator.pushNamed(context, '/home/my_profile'),
           ),
           ListTile(
-            title: const Text('Favoritos'),
+            title: const Text('Meus Favoritos'),
             leading: const Icon(
               Icons.favorite,
             ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const MyFavoritesScreen(),
-                ),
-              );
-            },
+            onTap: () => Navigator.pushNamed(context, '/home/my_favorites'),
           ),
           ListTile(
             title: const Text('Meus Anúncios'),
             leading: const Icon(Icons.assignment_returned),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const MyAnnouncements(),
-                ),
-              );
-            },
+            onTap: () => Navigator.pushNamed(context, '/home/my_publications')
           ),
-          const ListTile(
-            title: Text('Cadastrar Anúncio'),
-            leading: Icon(Icons.campaign_sharp),
+          ListTile(
+            title: const Text('Cadastrar Anúncio'),
+            leading: const Icon(Icons.campaign_sharp),
+            onTap: () => Navigator.pushNamed(context, '/home/create_publication'),
           ),
           const Divider(
             color: Colors.black,
             height: 5,
           ),
-          const ListTile(
-            title: Text('Politica de Privacidade'),
+          ListTile(
+            title: const Text('Política de Privacidade'),
+            onTap: () => Navigator.pushNamed(context, '/home/privacy_policy')
+            ,
           ),
-          const ListTile(
-            title: Text('Termos de Serviço'),
+          ListTile(
+            title: const Text('Termos de Serviço'),
+            onTap: () => Navigator.pushNamed(context, '/home/service_terms'),
           ),
           const Divider(
             color: Colors.black,
             height: 5,
           ),
-          const ListTile(
-            title: Text('Relatar um problema'),
+          ListTile(
+            title: const Text('Relatar um problema'),
+            onTap: () => Navigator.pushNamed(context, '/home/report_a_problem'),
           ),
-          const ListTile(
-            title: Text('Sobre'),
+          ListTile(
+            title: const Text('Sobre'),
+            onTap: () => Navigator.pushNamed(context, '/home/about'),
           ),
         ],
       ),

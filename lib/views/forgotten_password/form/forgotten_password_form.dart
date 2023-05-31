@@ -45,7 +45,7 @@ class _ForgottenPasswordFormState extends State<ForgottenPasswordForm> {
           text: 'CONTINUAR',
           onPressed: () async {
             if (formKey.currentState!.validate()) {
-              Navigator.pushNamed(context, '/forgottenpassword/validationcode');
+              Navigator.pushNamed(context, '/forgotten_password/validation_code');
             }
           },
         ),

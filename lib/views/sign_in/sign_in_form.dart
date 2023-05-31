@@ -54,7 +54,7 @@ class _SignInFormState extends State<SignInForm> {
           onTap: () {
             Navigator.pushNamed(
               context,
-              '/forgottenpassword',
+              '/forgotten_password',
             );
           },
           child: Container(

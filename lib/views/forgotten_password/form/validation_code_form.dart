@@ -42,7 +42,7 @@ class _ValidationCodeFormState extends State<ValidationCodeForm> {
                 Navigator.pop(context);
                 Navigator.pop(context);
                 Navigator.pushNamed(
-                    context, '/forgottenpassword/redefinepassword');
+                    context, '/forgotten_password/redefine_password');
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
