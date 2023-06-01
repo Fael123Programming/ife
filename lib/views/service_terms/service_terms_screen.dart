@@ -12,7 +12,7 @@ class _ServiceTermsScreen extends State<ServiceTermsScreen> {
   Widget build(BuildContext ctx) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Termos de Serviço'),
+        title: const Text('Termos de Serviçoc'),
         centerTitle: true,
         backgroundColor: const Color(0xFFFFB20F),
       ),
