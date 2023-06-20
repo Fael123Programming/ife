@@ -7,7 +7,7 @@ import 'package:ife/widgets/image_input.dart';
 import 'package:ife/widgets/phone_number_input/phone_number_input.dart';
 import 'package:ife/widgets/user_terms_conditions.dart';
 import 'package:ife/widgets/button.dart';
-import 'package:ife/widgets/input.dart';
+import 'package:ife/widgets/text_input.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -27,6 +27,24 @@ class SignUpFormState extends State<SignUpForm> {
   bool listTileIconChecked = false;
   Icon listTileIcon = const Icon(Icons.check_box_outline_blank_outlined);
 
+  late FocusNode emailFocusNode, phoneFocusNode, passwdFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    emailFocusNode = FocusNode();
+    phoneFocusNode = FocusNode();
+    passwdFocusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    emailFocusNode.dispose();
+    phoneFocusNode.dispose();
+    passwdFocusNode.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenSizer = ScreenSizer(context);
@@ -38,12 +56,20 @@ class SignUpFormState extends State<SignUpForm> {
       ),
       child: Column(
         children: [
-          const ImageInput(),
+          const ImageInput(
+            width: 120,
+            height: 120,
+          ),
           Form(
             key: formKey,
             child: Column(
               children: [
-                const Input(type: 'Nome completo'),
+                TextInput(
+                  hintText: 'Nome Completo',
+                  inputType: TextInputType.text,
+                  focus: true,
+                  onEditingComplete: () => emailFocusNode.requestFocus(),
+                ),
                 Container(
                   margin: EdgeInsets.only(
                     top: screenSizer.convertToDeviceScreenHeight(
@@ -55,12 +81,22 @@ class SignUpFormState extends State<SignUpForm> {
                           ScreenPercentage.marginInbetweenTextFormFields,
                     ),
                   ),
-                  child: const Input(type: 'Email'),
+                  child: TextInput(
+                    hintText: 'E-mail',
+                    focusNode: emailFocusNode,
+                    inputType: TextInputType.emailAddress,
+                    onEditingComplete: () => phoneFocusNode.requestFocus(),
+                  ),
                 ),
-                PhoneNumberInput(key: phoneNumberInputController),
+                PhoneNumberInput(
+                  key: phoneNumberInputController,
+                  focusNode: phoneFocusNode,
+                  onEditingComplete: () => passwdFocusNode.requestFocus(),
+                ),
                 PasswordConfirm(
                   passwordField1Controller: passwordField1Controller,
                   passwordField2Controller: passwordField2Controller,
+                  passwordFocusNode: passwdFocusNode,
                 ),
                 ListTile(
                   leading: listTileIcon,
@@ -133,7 +169,7 @@ class SignUpFormState extends State<SignUpForm> {
             text: 'Cadastrar-se',
             onPressed: () {
               if (formKey.currentState!.validate()) {
-                String msg = 'Cadastrado!';
+                String msg = 'Seja bem-vindo!';
                 if (listTileIconChecked) {
                   // Log user in.
                   Navigator.pop(context);

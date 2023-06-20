@@ -16,6 +16,9 @@ class _ServiceTermsScreen extends State<ServiceTermsScreen> {
         centerTitle: true,
         backgroundColor: const Color(0xFFFFB20F),
       ),
+      body: Container(
+        child: Column(),
+      )
     );
   }
 }

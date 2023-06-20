@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ife/utils/screen_sizer.dart';
 import 'package:ife/utils/screen_percentage.dart';
 import 'package:ife/widgets/button.dart';
-import 'package:ife/widgets/input.dart';
+import 'package:ife/widgets/text_input.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({Key? key}) : super(key: key);
@@ -17,6 +17,20 @@ class _SignInFormState extends State<SignInForm> {
   final passwordController = TextEditingController();
   bool obscurePassword = true;
   IconData passwordIconData = Icons.visibility_off_outlined;
+
+  late FocusNode passwdFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    passwdFocusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    passwdFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,14 +52,23 @@ class _SignInFormState extends State<SignInForm> {
             key: formKey,
             child: Column(
               children: [
-                const Input(type: 'Email'),
+                TextInput(
+                  hintText: 'E-mail',
+                  inputType: TextInputType.emailAddress,
+                  onEditingComplete: () => passwdFocusNode.requestFocus(),
+                ),
                 SizedBox(
                   height: screenSizer.convertToDeviceScreenHeight(
                     screenPercentage:
                         ScreenPercentage.marginInbetweenTextFormFields,
                   ),
                 ),
-                const Input(type: 'Senha'),
+                TextInput(
+                  hintText: 'Senha',
+                  inputType: TextInputType.text,
+                  obscureText: true,
+                  focusNode: passwdFocusNode,
+                ),
               ],
             ),
           ),

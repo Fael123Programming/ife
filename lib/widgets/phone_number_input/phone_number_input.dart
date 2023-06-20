@@ -7,7 +7,11 @@ import 'package:ife/utils/validator.dart';
 import 'package:ife/widgets/phone_number_input/br_phone_number_formatter.dart';
 
 class PhoneNumberInput extends StatefulWidget {
-  const PhoneNumberInput({Key? key}) : super(key: key);
+  final FocusNode? focusNode;
+  final Function()? onEditingComplete;
+
+  const PhoneNumberInput({Key? key, this.focusNode, this.onEditingComplete})
+      : super(key: key);
 
   @override
   PhoneNumberInputState createState() => PhoneNumberInputState();
@@ -26,17 +30,35 @@ class PhoneNumberInputState extends State<PhoneNumberInput> {
         ),
       ),
       child: TextFormField(
+        onEditingComplete: widget.onEditingComplete,
+        focusNode: widget.focusNode,
         enableInteractiveSelection: false,
         controller: textFormFieldController,
         keyboardType: TextInputType.phone,
         decoration: InputDecoration(
           counter: const Offstage(),
+          border: const OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.grey,
+              width: 1.0,
+            ),
+          ),
+          focusedBorder: const OutlineInputBorder(),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.error,
+              width: 1.0,
+            ),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.error,
+              width: 1.0,
+            ),
+          ),
           hintText: 'Número de telefone',
           hintStyle: GoogleFonts.roboto(color: Colors.grey),
           errorText: '',
-          border: const OutlineInputBorder(),
-          focusedBorder: const OutlineInputBorder(),
-          errorBorder: const OutlineInputBorder(),
           isDense: true,
           prefixIcon: const Text(' +55 '),
           prefixIconConstraints:

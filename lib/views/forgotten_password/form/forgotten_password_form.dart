@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ife/utils/screen_sizer.dart';
 import 'package:ife/utils/screen_percentage.dart';
 import 'package:ife/widgets/button.dart';
-import 'package:ife/widgets/input.dart';
+import 'package:ife/widgets/text_input.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
 class ForgottenPasswordForm extends StatefulWidget {
@@ -38,14 +38,17 @@ class _ForgottenPasswordFormState extends State<ForgottenPasswordForm> {
           child: Form(
             key: formKey,
             autovalidateMode: AutovalidateMode.always,
-            child: const Input(type: 'Email'),
+            child: const TextInput(
+              inputType: TextInputType.emailAddress,
+            ),
           ),
         ),
         Button(
           text: 'CONTINUAR',
           onPressed: () async {
             if (formKey.currentState!.validate()) {
-              Navigator.pushNamed(context, '/forgotten_password/validation_code');
+              Navigator.pushNamed(
+                  context, '/forgotten_password/validation_code');
             }
           },
         ),

@@ -6,11 +6,15 @@ import 'package:ife/utils/screen_sizer.dart';
 class PasswordConfirm extends StatefulWidget {
   final TextEditingController passwordField1Controller,
       passwordField2Controller;
+  final FocusNode? passwordFocusNode;
+  final Function()? onConfirmPasswordEditingComplete;
 
   const PasswordConfirm(
       {Key? key,
       required this.passwordField1Controller,
-      required this.passwordField2Controller})
+      required this.passwordField2Controller,
+      this.passwordFocusNode,
+      this.onConfirmPasswordEditingComplete})
       : super(key: key);
 
   @override
@@ -22,14 +26,29 @@ class _PasswordConfirmState extends State<PasswordConfirm> {
   IconData passwordField2IconData = Icons.visibility_outlined;
   bool visibility1 = true, visibility2 = true;
 
+  late FocusNode confirmPasswordFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    confirmPasswordFocusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    confirmPasswordFocusNode.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenSizer = ScreenSizer(context);
     return Column(
       children: [
         TextFormField(
+          focusNode: widget.passwordFocusNode,
+          onEditingComplete: () => confirmPasswordFocusNode.requestFocus(),
           cursorColor: Colors.black,
-          autofocus: true,
           controller: widget.passwordField1Controller,
           decoration: InputDecoration(
             focusedBorder: const OutlineInputBorder(),
@@ -62,6 +81,8 @@ class _PasswordConfirmState extends State<PasswordConfirm> {
             ),
           ),
           child: TextFormField(
+            focusNode: confirmPasswordFocusNode,
+            onEditingComplete: widget.onConfirmPasswordEditingComplete,
             cursorColor: Colors.black,
             controller: widget.passwordField2Controller,
             decoration: InputDecoration(
