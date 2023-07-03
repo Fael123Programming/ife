@@ -24,9 +24,9 @@ class _SignInScreenState extends State<SignInScreen> {
     final screenSizer = ScreenSizer(context);
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: GestureDetector(
-          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      body: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: SingleChildScrollView(
           child: Center(
             child: Container(
               margin: EdgeInsets.only(

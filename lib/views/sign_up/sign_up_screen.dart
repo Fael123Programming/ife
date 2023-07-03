@@ -66,9 +66,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
       },
       child: Scaffold(
         appBar: CustomAppBar(title: 'Cadastro'),
-        body: SingleChildScrollView(
-          child: GestureDetector(
-            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        body: GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          child: SingleChildScrollView(
             child: Center(
               child: Column(
                 children: [

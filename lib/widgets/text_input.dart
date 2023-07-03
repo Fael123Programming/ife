@@ -6,6 +6,7 @@ class TextInput extends StatefulWidget {
   final bool focus, obscureText;
   final FocusNode? focusNode;
   final TextInputType? inputType;
+  final TextEditingController? controller;
   final String hintText;
 
   const TextInput(
@@ -13,6 +14,7 @@ class TextInput extends StatefulWidget {
       this.onEditingComplete,
       this.focusNode,
       this.inputType,
+      this.controller,
       this.focus = false,
       this.obscureText = false,
       this.hintText = ''})
@@ -23,11 +25,15 @@ class TextInput extends StatefulWidget {
 }
 
 class _TextInputState extends State<TextInput> {
-  final controller = TextEditingController();
+  TextEditingController outerController = TextEditingController();
+  late TextEditingController controller;
   bool visibility = false;
 
   @override
   Widget build(BuildContext context) {
+    controller =
+        widget.controller != null ? widget.controller! : outerController;
+
     return TextFormField(
       focusNode: widget.focusNode,
       onEditingComplete: widget.onEditingComplete,
